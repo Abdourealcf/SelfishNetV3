@@ -33,9 +33,9 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\SelfishNetv3.exe\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -230,6 +230,7 @@
     <None Include="bin\x86\Release\SN2_result.ico" />
     <Content Include="nov0caina.ico" />
     <None Include="Resources\SN2_result.ico" />
+    <None Include="Resources\Nic_result.ico" />
     <Content Include="this.Ico" />
   </ItemGroup>
   <ItemGroup>

@@ -40,6 +40,7 @@ namespace SelfishNetv3
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.treeGridView1 = new AdvancedDataGridView.TreeGridView();
             this.ColPCName = new AdvancedDataGridView.TreeGridColumn();
             this.ColPCIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,6 +67,7 @@ namespace SelfishNetv3
             this.SelfishNetTrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.SelfishNetTray = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timerDiscovery = new System.Windows.Forms.Timer(this.components);
             this.toolStrip1.SuspendLayout();
@@ -83,7 +85,8 @@ namespace SelfishNetv3
             this.toolStripButton2,
             this.toolStripSeparator2,
             this.toolStripButton3,
-            this.toolStripSeparator3});
+            this.toolStripSeparator3,
+            this.toolStripButton4});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(685, 39);
@@ -134,6 +137,16 @@ namespace SelfishNetv3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Image = global::SelfishNetv3.Properties.Resources.toolStripButton4_Image;
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(36, 36);
+            this.toolStripButton4.Text = "About";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click_1);
             // 
             // treeGridView1
             // 
@@ -388,23 +401,32 @@ namespace SelfishNetv3
             // 
             this.SelfishNetTray.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showToolStripMenuItem,
+            this.aboutToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.SelfishNetTray.Name = "SelfishNetTray";
-            this.SelfishNetTray.Size = new System.Drawing.Size(104, 48);
+            this.SelfishNetTray.Size = new System.Drawing.Size(108, 70);
             // 
             // showToolStripMenuItem
             // 
             this.showToolStripMenuItem.Image = global::SelfishNetv3.Properties.Resources._167;
             this.showToolStripMenuItem.Name = "showToolStripMenuItem";
-            this.showToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.showToolStripMenuItem.Text = "Show";
             this.showToolStripMenuItem.Click += new System.EventHandler(this.ShowToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Image = global::SelfishNetv3.Properties.Resources.toolStripButton4_Image;
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Image = global::SelfishNetv3.Properties.Resources._172;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -421,6 +443,7 @@ namespace SelfishNetv3
             this.Controls.Add(this.toolStrip1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "ArpForm";
             this.Opacity = 0D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -476,6 +499,8 @@ namespace SelfishNetv3
         private DataGridViewNumericUpDownElements.DataGridViewNumericUpDownColumn ColUploadCap;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColBlock;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColSpoof;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

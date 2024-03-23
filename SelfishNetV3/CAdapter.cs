@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace SelfishNetv3
 {
-#pragma warning disable  // Falta el comentario XML para el tipo o miembro visible públicamente
+#pragma warning disable CS1591 // Falta el comentario XML para el tipo o miembro visible públicamente
     public partial class CAdapter : Form
     {
         private NetworkInterface[] nics;
@@ -24,9 +24,27 @@ namespace SelfishNetv3
             buttonCancel.Text = "Quit";
         }
 
+        //this will disbale close window box "X"
+        //https://stackoverflow.com/questions/7301825/how-to-hide-only-the-close-x-button
+        //
+        //private const int CP_NOCLOSE_BUTTON = 0x200;
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        CreateParams myCp = base.CreateParams;
+        //        myCp.ClassStyle = myCp.ClassStyle | CP_NOCLOSE_BUTTON;
+        //        return myCp;
+        //    }
+        //}
+
+
+
+
         private void CAdapter_Load(object sender, EventArgs e)
         {
-            this.Icon = SelfishNetv3.Properties.Resources.SN2_result;
+            this.Icon = SelfishNetv3.Properties.Resources.Nic_result;
+            this.ShowInTaskbar = false;
         }
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -85,21 +103,20 @@ namespace SelfishNetv3
             {
 
                 System.Windows.Forms.DialogResult result = MessageBox.Show("Are you sure you want to close the App?", "Application Closing!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                switch (result)
+
+                if (result == DialogResult.OK)
                 {
-                    case System.Windows.Forms.DialogResult.OK:
-                        if (WindowState == FormWindowState.Minimized)
-                        {
-                            Show();
-                        }
-                        if (buttonCancel.Text.CompareTo("Quit") == 0)
-                        {
-                            ((IDisposable)ArpForm.instance).Dispose();
-                            return;
-                        }
-                        ArpForm.instance.Enabled = true;
-                        Close();
-                        break;
+
+                    if (WindowState == FormWindowState.Minimized) Show();
+
+                    if (buttonCancel.Text.CompareTo("Quit") == 0)
+                    {
+                        ((IDisposable)ArpForm.instance).Dispose();
+                        return;
+                    }
+                    ArpForm.instance.Enabled = true;
+                    Close();
+
                 }
 
             }
@@ -116,16 +133,11 @@ namespace SelfishNetv3
             }
 
 
-
-
-
-
-
-
         }
 
         private void ButtonOK_Click(object sender, EventArgs e)
         {
+            confirmation = true;
             buttonCancel.Text = "Cancel";
             ArpForm.instance.Enabled = true;
             ArpForm.instance.NicIsSelected(selectedNic);
@@ -190,6 +202,36 @@ namespace SelfishNetv3
             ((IDisposable)ArpForm.instance).Dispose();
 
         }
+
+        bool confirmation;
+        private void CAdapter_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!ArpForm.systemShutdown & !confirmation)
+            {
+
+                System.Windows.Forms.DialogResult result = MessageBox.Show("Are you sure you want to close the App?", "Application Closing!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                switch (result)
+                {
+                    case System.Windows.Forms.DialogResult.OK:
+                        if (WindowState == FormWindowState.Minimized) Show();
+
+                        if (buttonCancel.Text.CompareTo("Quit") == 0)
+                        {
+                            ((IDisposable)ArpForm.instance).Dispose();
+                            return;
+                        }
+                        ArpForm.instance.Enabled = true;
+                        Close();
+                        break;
+                    case System.Windows.Forms.DialogResult.Cancel:
+                        e.Cancel = true;
+                        break;
+
+                }
+
+            }
+
+        }
     }
-#pragma warning restore  // Falta el comentario XML para el tipo o miembro visible públicamente
+#pragma warning restore  CS1591 // Falta el comentario XML para el tipo o miembro visible públicamente
 }

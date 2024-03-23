@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace SelfishNetv3
 {
-#pragma warning disable  // Falta el comentario XML para el tipo o miembro visible públicamente
+#pragma warning disable  CS1591 // Falta el comentario XML para el tipo o miembro visible públicamente
     public delegate void delegateOnNewPC(PC pc);
 
     public delegate void DelUpdateName(PC pc, string str);
@@ -187,8 +187,22 @@ namespace SelfishNetv3
                 treeGridNode.ImageIndex = 0;
                 treeGridNode.Cells[5].ReadOnly = false;
                 treeGridNode.Cells[6].ReadOnly = false;
+
+                if (timer3trd != null) timer3trd.Abort();
+                timer3trd = new Thread(timer3_Tick);
+                timer3trd.Start();
+
+                //treeGridView1.CurrentCell = treeGridView1.Rows[treeGridView1.Rows.Count - 1].Cells[6];
+                //treeGridView1.CurrentCell = treeGridView1.Rows[treeGridView1.Rows.Count - 1].Cells[5];
+                //treeGridView1.CurrentCell = treeGridView1.Rows[treeGridView1.Rows.Count-  2].Cells[5];
+                //treeGridView1.CurrentCell = treeGridView1.Rows[treeGridView1.Rows.Count - 1].Cells[5];
+
             }
         }
+
+        Thread timer3trd;
+
+
         private void ToolStripButton1_Click(object sender, EventArgs e)
         {
             this.cArp.startArpDiscovery();
@@ -497,10 +511,8 @@ namespace SelfishNetv3
 
         private void ArpForm_Resize(object sender, EventArgs e)
         {
-            if (WindowState == FormWindowState.Minimized)
-            {
-                Hide();
-            }
+            if (WindowState == FormWindowState.Minimized) Hide();
+
             else
             {
 
@@ -544,17 +556,13 @@ namespace SelfishNetv3
             {
 
                 System.Windows.Forms.DialogResult result = MessageBox.Show("Are you sure you want to close the App?", "Application Closing!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                switch (result)
-                {
-                    case System.Windows.Forms.DialogResult.OK:
-                        if (WindowState == FormWindowState.Minimized)
-                        {
-                            Show();
-                        }
+                if (result == DialogResult.OK)
+                { 
+                        if (WindowState == FormWindowState.Minimized) Show();
                         ToolStripButton3_Click(toolStripButton3, new EventArgs());
                         SelfishNetTrayIcon.Dispose();
                         Environment.Exit(0);
-                        break;
+ 
                 }
                 e.Cancel = true;
             }
@@ -570,7 +578,7 @@ namespace SelfishNetv3
 
         private void ArpForm_Shown(object sender, EventArgs e)
         {
-            string[] args = Environment.GetCommandLineArgs();
+            //string[] args = Environment.GetCommandLineArgs();
             if ((args.Length > 1))
             {
                 minimized = true;
@@ -597,6 +605,41 @@ namespace SelfishNetv3
 
         } //WndProc   
 
-#pragma warning restore  // Falta el comentario XML para el tipo o miembro visible públicamente
+        private void timer3_Tick()
+        {
+            int x = 0;
+            do
+            {
+                for (int i = 1; i < treeGridView1.Nodes[0].Nodes.Count; i++)
+                {
+
+                        DataGridViewCellEventArgs e = new DataGridViewCellEventArgs(5, i);
+                        TreeGridView1_CellValueChanged(treeGridView1, e);
+                        e = new DataGridViewCellEventArgs(6, i);
+                        TreeGridView1_CellValueChanged(treeGridView1, e);
+
+                }
+                Thread.Sleep(5000);
+
+                //x++;
+            } while ( true);
+
+
+
+        }
+
+        private void toolStripButton4_Click_1(object sender, EventArgs e)
+        {
+            Form about = new about();
+            about.ShowDialog();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form about = new about();
+            about.ShowDialog();
+        }
+
+#pragma warning restore CS1591  // Falta el comentario XML para el tipo o miembro visible públicamente
     }
 }

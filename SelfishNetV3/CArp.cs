@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace SelfishNetv3
 {
-#pragma warning disable  // Falta el comentario XML para el tipo o miembro visible pblicamente
+#pragma warning disable CS1591  // Falta el comentario XML para el tipo o miembro visible pblicamente
     public class CArp : IDisposable
     {
         private bool isListeningArp;
@@ -556,5 +556,5 @@ namespace SelfishNetv3
             GC.SuppressFinalize(this);
         }
     }
-#pragma warning restore  // Falta el comentario XML para el tipo o miembro visible p�blicamente
+#pragma warning restore  CS1591 // Falta el comentario XML para el tipo o miembro visible p�blicamente
 }
